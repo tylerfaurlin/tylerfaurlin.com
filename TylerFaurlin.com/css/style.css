@@ -64,30 +64,6 @@ ul{ list-style:none; }
   transition:width .08s linear;
 }
 
-.cursor-dot,.cursor-ring{
-  position:fixed; top:0; left:0; pointer-events:none; z-index:9998;
-  border-radius:50%; transform:translate(-50%,-50%);
-  transition:opacity .2s ease;
-}
-.cursor-dot{ width:6px; height:6px; background:var(--black); }
-.cursor-ring{
-  width:36px; height:36px; border:1.4px solid var(--black);
-  transition:width .25s var(--ease), height .25s var(--ease),
-             border-color .25s ease, background .25s ease, transform .12s linear, opacity .2s ease;
-  display:flex; align-items:center; justify-content:center;
-}
-.cursor-ring::after{
-  content:""; font-family:var(--mono); font-size:9px;
-}
-.cursor-ring.is-link{ width:52px; height:52px; background:var(--black); border-color:var(--black); }
-.cursor-ring.is-play{ width:64px; height:64px; background:var(--lime); border-color:var(--lime); }
-.cursor-ring.is-play::before{
-  content:"VIEW"; font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--black);
-}
-@media (hover:none), (pointer:coarse){
-  .cursor-dot,.cursor-ring{ display:none; }
-}
-
 /* ============================================================
    Nav
    ============================================================ */
@@ -172,7 +148,6 @@ ul{ list-style:none; }
   background:rgba(10,10,8,.55); color:var(--offwhite);
   backdrop-filter:blur(4px);
 }
-
 /* ============================================================
    Hero
    ============================================================ */
@@ -239,7 +214,6 @@ ul{ list-style:none; }
 .reel-dots{ display:flex; gap:5px; }
 .reel-dots span{ width:6px; height:6px; border-radius:50%; background:rgba(242,239,230,.25); }
 .reel-label{ font-family:var(--mono); font-size:10px; color:rgba(242,239,230,.4); letter-spacing:.05em; }
-
 .reel-frame{
   position:relative; aspect-ratio:16/10; border-radius:12px; overflow:hidden;
   background:
@@ -298,7 +272,6 @@ ul{ list-style:none; }
   letter-spacing:.04em; text-transform:uppercase;
 }
 @keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
-
 /* ============================================================
    Reveal-on-scroll
    ============================================================ */
@@ -366,7 +339,6 @@ ul{ list-style:none; }
   color:var(--offwhite); opacity:.3; transition:opacity .35s ease, transform .35s var(--ease);
 }
 .track-row:hover .track-arrow{ opacity:1; transform:translate(4px,-4px); color:var(--lime); }
-
 /* ============================================================
    Work grid
    ============================================================ */
@@ -411,7 +383,6 @@ ul{ list-style:none; }
   margin-top:36px; text-align:center;
   font-family:var(--mono); font-size:11.5px; color:var(--gray-on-dark);
 }
-
 /* ============================================================
    Contact
    ============================================================ */
@@ -462,7 +433,6 @@ ul{ list-style:none; }
 }
 .form.is-sent .form-success{ display:block; }
 .form.is-sent .btn-submit{ opacity:.5; pointer-events:none; }
-
 /* ============================================================
    Footer
    ============================================================ */
@@ -505,7 +475,6 @@ ul{ list-style:none; }
 .modal-title{ font-family:var(--display); font-weight:900; text-transform:uppercase; font-size:28px; margin-bottom:16px; }
 .modal-desc{ font-size:15px; line-height:1.6; color:var(--gray-on-light); margin-bottom:18px; }
 .modal-metric{ font-family:var(--mono); font-size:13px; color:var(--lime-dim); }
-
 /* ============================================================
    Reduced motion
    ============================================================ */
