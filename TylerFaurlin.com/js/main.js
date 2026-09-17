@@ -14,6 +14,7 @@
   }
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
   /* ---------- reveal on scroll ---------- */
   const revealEls = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && !reduceMotion) {
@@ -29,7 +30,6 @@
   } else {
     revealEls.forEach((el) => el.classList.add('in-view'));
   }
-
   /* ---------- count-up stats ---------- */
   const statEls = document.querySelectorAll('.stat-num');
   function animateCount(el) {
@@ -56,6 +56,7 @@
     }, { threshold: 0.5 });
     statEls.forEach((el) => statIO.observe(el));
   }
+
   /* ---------- mobile menu ---------- */
   const navToggle = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -73,7 +74,6 @@
       });
     });
   }
-
   /* ---------- work card modal ---------- */
   const modal = document.getElementById('workModal');
   const modalTitle = document.getElementById('modalTitle');
@@ -105,13 +105,25 @@
       }
     });
   }
-
-  /* ---------- contact form (front-end only demo) ---------- */
+  /* ---------- contact form ---------- */
   const form = document.querySelector('.form');
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      form.classList.add('is-sent');
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      }).then((response) => {
+        if (response.ok) {
+          form.reset();
+          form.classList.add('is-sent');
+        } else {
+          alert('Something went wrong sending your message — please email contact@tylerfaurlin.com directly.');
+        }
+      }).catch(() => {
+        alert('Something went wrong sending your message — please email contact@tylerfaurlin.com directly.');
+      });
     });
   }
 })();
