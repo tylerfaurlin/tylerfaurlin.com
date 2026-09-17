@@ -14,7 +14,6 @@
   }
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-
   /* ---------- reveal on scroll ---------- */
   const revealEls = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && !reduceMotion) {
@@ -57,41 +56,6 @@
     }, { threshold: 0.5 });
     statEls.forEach((el) => statIO.observe(el));
   }
-
-  /* ---------- custom cursor ---------- */
-  const cursorDot = document.getElementById('cursorDot');
-  const cursorRing = document.getElementById('cursorRing');
-  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-  if (isFinePointer && cursorDot && cursorRing) {
-    let ringX = 0, ringY = 0, mouseX = 0, mouseY = 0;
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursorDot.style.left = mouseX + 'px';
-      cursorDot.style.top = mouseY + 'px';
-    });
-    function raf() {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      requestAnimationFrame(raf);
-    }
-    raf();
-
-    document.querySelectorAll('[data-cursor="link"]').forEach((el) => {
-      el.addEventListener('mouseenter', () => cursorRing.classList.add('is-link'));
-      el.addEventListener('mouseleave', () => cursorRing.classList.remove('is-link'));
-    });
-    document.querySelectorAll('[data-cursor="play"]').forEach((el) => {
-      el.addEventListener('mouseenter', () => cursorRing.classList.add('is-play'));
-      el.addEventListener('mouseleave', () => cursorRing.classList.remove('is-play'));
-    });
-  } else {
-    if (cursorDot) cursorDot.style.display = 'none';
-    if (cursorRing) cursorRing.style.display = 'none';
-  }
-
   /* ---------- mobile menu ---------- */
   const navToggle = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
